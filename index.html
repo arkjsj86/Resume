@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>박종화 · Unity 클라이언트 프로그래머 이력서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Black+Han+Sans&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#080612;
+    --bg-2:#0E0A1C;
+    --surface:#16102A;
+    --surface-2:#1E1538;
+    --line:#2A1F4A;
+    --fg:#FAFAFA;
+    --fg-2:#B6AECC;
+    --dim:#6E6680;
+    --pink:#FF2E6C;
+    --cyan:#00E0FF;
+    --gold:#FFC857;
+    --purple:#9A52FF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{
+    background:var(--bg);color:var(--fg);
+    font-family:'Manrope','Noto Sans KR',system-ui,sans-serif;
+    line-height:1.55;font-weight:400;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  /* Animated bg */
+  body{position:relative;min-height:100vh}
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,46,108,.18), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(0,224,255,.14), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(154,82,255,.10), transparent 60%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:
+      linear-gradient(rgba(106,86,140,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(106,86,140,.06) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  main{position:relative;z-index:1}
+  /* Top nav */
+  .nav{position:fixed;top:24px;left:24px;z-index:200}
+  .nav a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);text-decoration:none;padding:8px 14px;border:1px solid var(--cyan);background:rgba(0,0,0,.5);backdrop-filter:blur(8px)}
+  .nav a:hover{background:var(--cyan);color:var(--bg)}
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 64px;position:relative}
+  .hero-inner{max-width:1280px;margin:0 auto;width:100%;padding:0 56px}
+  .hero .tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--cyan);margin-bottom:24px;
+    padding:8px 14px;border:1px solid rgba(0,224,255,.4);background:rgba(0,224,255,.06);
+  }
+  .hero .tag .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+  .hero h1{
+    font-family:'Black Han Sans','Anton',sans-serif;
+    font-weight:400;line-height:.88;letter-spacing:-0.02em;
+    font-size:clamp(56px,12vw,168px);
+    background:linear-gradient(135deg, #FF2E6C 0%, #9A52FF 35%, #00E0FF 80%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    margin-bottom:6px;
+    filter:drop-shadow(0 4px 32px rgba(255,46,108,.25));
+  }
+  .hero .latin{
+    font-family:'Anton',sans-serif;font-size:clamp(28px,3.8vw,52px);
+    letter-spacing:.08em;color:var(--fg-2);margin-bottom:34px;
+    text-transform:uppercase;
+  }
+  .hero .latin .acc{color:var(--gold)}
+  .hero .mainstack{
+    font-family:'Anton',sans-serif;font-size:clamp(34px,5.4vw,72px);
+    letter-spacing:.06em;line-height:1;text-transform:uppercase;
+    margin:8px 0 32px;
+    background:linear-gradient(135deg,var(--gold) 0%,var(--pink) 70%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .hero .mainstack .acc{-webkit-text-fill-color:initial;color:var(--cyan)}
+  .hero .name-latin{
+    display:inline-block;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .hero .role{
+    font-family:'Manrope',sans-serif;font-size:clamp(18px,2vw,22px);font-weight:300;
+    color:var(--fg);max-width:780px;line-height:1.5;margin-bottom:48px;
+  }
+  .hero .role b{color:var(--cyan);font-weight:500}
+  .hero .role em{color:var(--pink);font-style:normal;font-weight:600}
+  /* Stats row */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stat{
+    background:rgba(22,16,42,.6);border:1px solid var(--line);
+    padding:22px 22px;backdrop-filter:blur(8px);
+    position:relative;overflow:hidden;
+  }
+  .stat::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--pink),var(--purple),var(--cyan));
+  }
+  .stat .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+  .stat .v{font-family:'Anton',sans-serif;font-size:46px;line-height:1;letter-spacing:.02em;color:var(--fg)}
+  .stat .v .acc{color:var(--gold)}
+  .stat .l{font-size:13px;color:var(--fg-2);margin-top:6px}
+  /* SECTIONS */
+  section.s{padding:120px 56px;max-width:1280px;margin:0 auto;position:relative}
+  .s-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:54px;border-bottom:1px solid var(--line);padding-bottom:18px;gap:24px;flex-wrap:wrap}
+  .s-head .num{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;color:var(--cyan);text-transform:uppercase}
+  .s-head h2{
+    font-family:'Black Han Sans','Anton',sans-serif;font-weight:400;
+    font-size:clamp(48px,7vw,96px);line-height:.9;letter-spacing:-0.01em;
+    color:var(--fg);
+  }
+  .s-head h2 .acc{color:var(--pink)}
+  .s-head .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+  /* Capability grid */
+  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .cap{
+    background:linear-gradient(135deg, rgba(22,16,42,.8), rgba(14,10,28,.6));
+    border:1px solid var(--line);padding:24px 24px;
+    position:relative;transition:all .3s ease;
+  }
+  .cap:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,224,255,.15)}
+  .cap .lvl{
+    position:absolute;top:18px;right:20px;font-family:'Anton',sans-serif;
+    font-size:14px;letter-spacing:.16em;color:var(--gold);
+  }
+  .cap .lvl::before{content:"";display:inline-block;width:6px;height:6px;background:var(--gold);border-radius:50%;margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--gold)}
+  .cap h3{
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;
+    color:var(--fg);margin-bottom:12px;line-height:1.35;
+  }
+  .cap p{font-size:14.5px;color:var(--fg-2);line-height:1.6}
+  .cap p b{color:var(--cyan);font-weight:600}
+  /* capability → project link */
+  a.cap{display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer}
+  a.cap .go{
+    margin-top:auto;padding-top:16px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--cyan);opacity:.65;transition:opacity .25s ease;
+  }
+  a.cap .go .arr{display:inline-block;transition:transform .25s ease}
+  a.cap:hover .go{opacity:1}
+  a.cap:hover .go .arr{transform:translateX(5px)}
+  /* anchor scroll offset + arrival highlight */
+  .proj-card,section.s{scroll-margin-top:90px}
+  .proj-card:target{border-color:var(--gold)!important;animation:flash 1.8s ease}
+  @keyframes flash{
+    0%{box-shadow:0 0 0 0 rgba(255,200,87,0)}
+    20%{box-shadow:0 0 0 3px rgba(255,200,87,.55),0 16px 48px rgba(255,200,87,.28)}
+    100%{box-shadow:0 0 0 0 rgba(255,200,87,0)}
+  }
+  /* Tech stack — narrative cards */
+  .stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .stack-card{
+    padding:32px;border:1px solid var(--line);background:rgba(22,16,42,.5);
+    backdrop-filter:blur(8px);position:relative;overflow:hidden;
+  }
+  .stack-card.primary{
+    grid-column:1/-1;
+    background:linear-gradient(135deg, rgba(255,46,108,.12), rgba(154,82,255,.10), rgba(0,224,255,.08));
+    border-color:var(--pink);
+  }
+  .stack-card .badge{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:.18em;color:var(--cyan);padding:4px 10px;border:1px solid var(--cyan);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .stack-card.primary .badge{color:var(--pink);border-color:var(--pink)}
+  .stack-card h3{
+    font-family:'Black Han Sans','Anton',sans-serif;font-weight:400;
+    font-size:36px;line-height:1.05;letter-spacing:-0.005em;color:var(--fg);margin-bottom:14px;
+  }
+  .stack-card.primary h3{font-size:54px;background:linear-gradient(135deg,var(--pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .stack-card .sub{font-size:13.5px;color:var(--dim);margin-bottom:16px;letter-spacing:.04em}
+  .stack-card ul{list-style:none}
+  .stack-card li{font-size:14.5px;color:var(--fg-2);padding:6px 0 6px 18px;position:relative;line-height:1.55}
+  .stack-card li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--cyan)}
+  .stack-card.primary li::before{background:var(--gold)}
+  .stack-card .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .pill{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    padding:5px 10px;border:1px solid var(--line);color:var(--fg-2);
+    background:rgba(0,0,0,.3);border-radius:3px;
+  }
+  .pill.hot{color:var(--pink);border-color:rgba(255,46,108,.4)}
+  /* Career timeline */
+  .timeline{position:relative;padding-left:42px}
+  .timeline::before{
+    content:"";position:absolute;left:14px;top:8px;bottom:8px;width:2px;
+    background:linear-gradient(180deg,var(--pink),var(--purple),var(--cyan));
+  }
+  .tl-item{position:relative;padding:18px 0 28px}
+  .tl-item::before{
+    content:"";position:absolute;left:-34px;top:24px;width:14px;height:14px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--cyan);
+    box-shadow:0 0 12px rgba(0,224,255,.6);
+  }
+  .tl-item.cur::before{background:var(--pink);border-color:var(--pink);box-shadow:0 0 16px var(--pink)}
+  .tl-row{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:baseline}
+  .tl-y{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan);letter-spacing:.04em}
+  .tl-y .now{color:var(--pink)}
+  .tl-co{font-family:'Manrope',sans-serif;font-weight:700;font-size:22px;color:var(--fg);margin-bottom:4px}
+  .tl-role{font-size:14px;color:var(--fg-2);margin-bottom:6px}
+  .tl-role .sep{color:var(--dim)}
+  .tl-work{font-size:13.5px;color:var(--dim);line-height:1.55}
+  /* Project cards */
+  .proj-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .proj-card{
+    background:linear-gradient(180deg, rgba(22,16,42,.85), rgba(14,10,28,.7));
+    border:1px solid var(--line);padding:28px;
+    position:relative;overflow:hidden;transition:all .3s ease;
+  }
+  .proj-card:hover{border-color:var(--pink);transform:translateY(-4px);box-shadow:0 16px 48px rgba(255,46,108,.18)}
+  .proj-card::before{
+    content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg, transparent, rgba(0,224,255,.05), transparent);
+    transition:left .8s ease;
+  }
+  .proj-card:hover::before{left:100%}
+  .proj-card.feature{grid-column:1/-1;
+    background:linear-gradient(135deg, rgba(255,46,108,.10), rgba(154,82,255,.06), rgba(0,224,255,.08));
+    border-color:var(--pink);
+  }
+  .proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .ptag{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+    padding:3px 9px;border-radius:2px;text-transform:uppercase;
+    background:rgba(0,224,255,.12);color:var(--cyan);border:1px solid rgba(0,224,255,.3);
+  }
+  .ptag.hot{background:rgba(255,46,108,.14);color:var(--pink);border-color:rgba(255,46,108,.4)}
+  .ptag.gold{background:rgba(255,200,87,.12);color:var(--gold);border-color:rgba(255,200,87,.4)}
+  .proj-card h3{
+    font-family:'Black Han Sans','Anton',sans-serif;font-weight:400;
+    font-size:32px;line-height:1.05;letter-spacing:-0.01em;color:var(--fg);margin-bottom:6px;
+  }
+  .proj-card.feature h3{font-size:46px;background:linear-gradient(135deg,var(--fg),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .proj-card .pdesc{font-size:14px;color:var(--fg-2);margin-bottom:16px;line-height:1.5}
+  .proj-card ul{list-style:none;font-size:13.5px;line-height:1.65}
+  .proj-card li{padding:3px 0 3px 20px;position:relative;color:var(--fg-2)}
+  .proj-card li::before{content:"▸";position:absolute;left:0;color:var(--cyan)}
+  .proj-card.feature li::before{color:var(--gold)}
+  .proj-card .tech{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);letter-spacing:.04em}
+  .proj-card .url{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--cyan);text-decoration:none;margin-top:10px;border-bottom:1px dotted var(--cyan);padding-bottom:1px}
+  .proj-card .url::after{content:"→";transition:transform .2s}
+  .proj-card .url:hover::after{transform:translateX(3px)}
+  /* Education compact */
+  .edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .edu-row{padding:18px 22px;background:rgba(22,16,42,.5);border:1px solid var(--line);display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
+  .edu-row .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+  .edu-row .v{font-size:14.5px;color:var(--fg);line-height:1.5}
+  .edu-row .v .det{display:block;font-size:12.5px;color:var(--dim);margin-top:3px}
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.2fr 2fr;gap:64px;align-items:start}
+  .about-grid .quote{
+    font-family:'Black Han Sans','Anton',sans-serif;font-weight:400;
+    font-size:64px;line-height:.95;letter-spacing:-0.015em;
+    background:linear-gradient(135deg,var(--pink),var(--gold) 50%,var(--cyan));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:16px;
+  }
+  .about-grid .quote-sub{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);letter-spacing:.22em;text-transform:uppercase}
+  .about-grid p{font-size:15.5px;color:var(--fg-2);line-height:1.75;margin-bottom:18px}
+  .about-grid p b{color:var(--cyan);font-weight:600}
+  /* Contact */
+  .contact{padding:120px 56px 140px;max-width:1280px;margin:0 auto;text-align:center;position:relative}
+  .contact h2{
+    font-family:'Black Han Sans','Anton',sans-serif;font-weight:400;
+    font-size:clamp(64px,10vw,140px);line-height:.88;letter-spacing:-0.02em;
+    background:linear-gradient(135deg,var(--pink),var(--purple) 40%,var(--cyan));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:18px;
+  }
+  .contact .sub{font-size:18px;color:var(--fg-2);margin-bottom:42px;max-width:560px;margin-left:auto;margin-right:auto}
+  .cta{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:22px 36px;
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;
+    color:var(--bg);text-decoration:none;
+    background:linear-gradient(135deg,var(--pink),var(--gold));
+    border-radius:0;
+    position:relative;transition:all .25s ease;
+    box-shadow:0 8px 32px rgba(255,46,108,.4);
+    overflow:hidden;
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    opacity:0;transition:opacity .25s ease;
+  }
+  .cta:hover::before{opacity:1}
+  .cta span{position:relative}
+  .cta::after{content:"→";position:relative;font-size:20px}
+  .links{display:flex;justify-content:center;gap:24px;margin-top:32px;flex-wrap:wrap}
+  .links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan);padding-bottom:2px;letter-spacing:.04em}
+  .links a:hover{color:var(--gold);border-color:var(--gold)}
+  /* Footer */
+  .ft{padding:42px 56px;border-top:1px solid var(--line);text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.16em;text-transform:uppercase}
+  @media (max-width:900px){
+    .hero{padding:120px 0 40px}
+    .hero-inner{padding:0 24px}
+    section.s{padding:80px 24px}
+    .contact{padding:80px 24px}
+    .stats{grid-template-columns:1fr 1fr}
+    .caps{grid-template-columns:1fr}
+    .stack-grid{grid-template-columns:1fr}
+    .proj-grid{grid-template-columns:1fr}
+    .tl-row{grid-template-columns:1fr;gap:4px}
+    .edu-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="tag"><span class="dot"></span>박종화 · PARK JONGHWA · 9년차 · 이직 준비 중</div>
+    <h1>클라이언트<br>프로그래머</h1>
+    <div class="mainstack">C# <span class="acc">·</span> UNITY</div>
+    <div class="role">
+      <b>Unity 클라이언트 개발 9년차.</b> AR · VR · XR · 메타버스 · 시뮬레이션을 다수 출시한 <em>멀티플랫폼 경험</em> 위에,<br>
+      AI Agent 기반 개발 생산성으로 <em>새 도메인을 빠르게 흡수하는 개발자.</em>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">CAREER</div><div class="v"><span class="acc">9</span>년차</div><div class="l">7개 회사</div></div>
+      <div class="stat"><div class="k">MAIN STACK</div><div class="v">C# · Unity</div><div class="l">일상 실무</div></div>
+      <div class="stat"><div class="k">SHIPPED</div><div class="v">AR/VR/XR</div><div class="l">멀티플랫폼</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§01 / Capabilities</div>
+    <h2>핵심 <span class="acc">역량</span></h2>
+    <div class="meta">7 entries</div>
+  </div>
+  <div class="caps">
+    <a class="cap" href="#proj-smarttarget"><h3>멀티플랫폼 Unity 클라이언트 개발 9년차</h3><p>Windows · Android · HoloLens 2 멀티플랫폼에서 <b>7개 회사 · 다수 도메인</b> 경험.</p><span class="go">관련 프로젝트 <span class="arr">→</span></span></a>
+    <a class="cap" href="#sec-company"><h3>이종 도메인 대응력</h3><p>AR · VR · XR · 메타버스 · 디지털트윈 · 군용 시뮬레이션 등 <b>다양한 도메인 출시 경험</b>.</p><span class="go">회사 프로젝트 전체 <span class="arr">→</span></span></a>
+    <a class="cap" href="#proj-savehormuz"><h3>AI Agent 기반 개발 생산성</h3><p><b>Claude Code · Codex 등</b>으로 미경험 엔진(Godot) 단기 학습 → <b>Steam 2D 디펜스 게임 출시(2026.07 예정)</b>까지 완주.</p><span class="go">Save Hormuz <span class="arr">→</span></span></a>
+    <a class="cap" href="#proj-novel"><h3>멀티 에이전트 시스템 설계</h3><p>Claude Code · Codex(작문) + Gemini(검수) 이종 LLM 오케스트레이션으로 <b>편당 3,500~4,000자 × 100편 소설 1편 완주 PoC</b>.</p><span class="go">소설 집필 엔진 <span class="arr">→</span></span></a>
+    <a class="cap" href="#proj-dreampath"><h3>RAG 서비스 기획 · 라이브 배포</h3><p>교육 공공데이터(커리어넷 · Q-Net) + Gemini 기반 <b>DreamPath</b>, 제8회 교육 공공데이터 AI 활용대회 출품 + 라이브 운영 중.</p><span class="go">DreamPath <span class="arr">→</span></span></a>
+    <a class="cap" href="#proj-overthestrait"><h3>AI · 그래픽스 영역 확장</h3><p>강화학습(ML-Agents/PPO), <b>GPU Compute Shader · HLSL</b> 등 새로운 영역을 사이드 프로젝트로 확장.</p><span class="go">OverTheStrait · ProceduralTerrain <span class="arr">→</span></span></a>
+    <a class="cap" href="#proj-drone"><h3>장비 연동 · 문서화</h3><p>클라이언트 모듈 설계, <b>BLE · WebSocket 외부 장비 연동</b>, ICD · SDD · PDR · CDR 문서화 경험.</p><span class="go">드론 임무계획 · 시뮬레이터 <span class="arr">→</span></span></a>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§02 / Tech Stack</div>
+    <h2><span class="acc">기술</span> 스택</h2>
+    <div class="meta">narrative · honest attribution</div>
+  </div>
+
+  <div class="stack-grid">
+    <div class="stack-card primary">
+      <div class="badge">★ Main Stack</div>
+      <h3>C# · Unity</h3>
+      <div class="sub">회사 업무 9년차 일상 실무</div>
+    </div>
+
+    <div class="stack-card">
+      <div class="badge">회사 프로젝트</div>
+      <h3>다뤄본 영역</h3>
+      <ul>
+        <li>Windows · Android · HoloLens 2 멀티플랫폼 클라이언트 개발</li>
+        <li>AR · VR · XR · 메타버스 · 디지털트윈 · 군용 시뮬레이션 도메인 콘텐츠</li>
+        <li>BLE · Bluetooth · WebSocket · TCP/IP 외부 장비 · 서버 연동</li>
+        <li>Unity 저작도구 단 기능 구현, URP · Shader Graph 그래픽 작업</li>
+        <li>Git · SVN 협업, ICD · SDD · PDR · CDR 산출물 문서 작성</li>
+      </ul>
+    </div>
+
+    <div class="stack-card">
+      <div class="badge">AI와 함께 사이드</div>
+      <h3>탐험 영역</h3>
+      <div class="sub">AI Agent와 협업 · 본인은 기획 · 설계 · 운영</div>
+      <ul>
+        <li>Godot — 미경험 엔진 학습 + Steam 출시 흐름 체험</li>
+        <li>Unity ML-Agents · PPO 강화학습 환경 구성 체험</li>
+        <li>GPU Compute Shader · HLSL · fBm 노이즈 그래픽스 패턴 체험</li>
+        <li>RAG · 임베딩 검색 · 프롬프트 엔지니어링 — 공모전 출품작 적용</li>
+        <li>이종 LLM 멀티 에이전트 오케스트레이션 설계</li>
+        <li>GitHub Actions 기반 정적 사이트 자동 갱신 운영</li>
+      </ul>
+    </div>
+
+    <div class="stack-card" style="grid-column:1/-1">
+      <div class="badge">Daily Driver</div>
+      <h3 style="font-size:36px">AI Agent 일상 활용</h3>
+      <div class="pills">
+        <span class="pill hot">Claude Code</span>
+        <span class="pill hot">Codex</span>
+        <span class="pill hot">Gemini</span>
+      </div>
+      <div class="sub" style="margin-top:14px;margin-bottom:0">개발 생산성 향상 목적으로 일상적으로 활용</div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§03 / Career</div>
+    <h2><span class="acc">경력</span> 타임라인</h2>
+    <div class="meta">7 companies · 9년차</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-item cur"><div class="tl-row">
+      <div class="tl-y"><span class="now">2024.04 → NOW</span></div>
+      <div><div class="tl-co">㈜와이엠엑스 (YMX)</div><div class="tl-role">책임 <span class="sep">·</span> 클라이언트</div><div class="tl-work">LG E-Guide · LG NFF · 한기대 가상훈련 · KORAIL AR POC</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2023.10 → 2024.04</div>
+      <div><div class="tl-co">심지</div><div class="tl-role">선임연구원 <span class="sep">·</span> 앱개발</div><div class="tl-work">VR 전시장 · JSON 데이터 가시화</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2023.02 → 2023.06</div>
+      <div><div class="tl-co">이디홀딩스</div><div class="tl-role">과장 <span class="sep">·</span> 팀원</div><div class="tl-work">메타버스 플랫폼 프로토타입 · 오픈베타</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2021.01 → 2022.12</div>
+      <div><div class="tl-co">세종대학교산학협력단 · XR_Lab</div><div class="tl-role">선임연구원 <span class="sep">·</span> 팀원</div><div class="tl-work">KOCCA 스마트 타겟 · HoloLens 2 + BLE 연동 · 사격 시뮬레이션</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2020.09 → 2020.12</div>
+      <div><div class="tl-co">에이티에스</div><div class="tl-role">사원</div><div class="tl-work">스마트 타겟 게임 · 클라이언트 모듈화</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2018.04 → 2020.07</div>
+      <div><div class="tl-co">트램폴린 · VI팀</div><div class="tl-role">사원</div><div class="tl-work">핸드폰 UX · 카메라 · 태블릿 · 자동차 보고용 프로토타입</div></div>
+    </div></div>
+    <div class="tl-item"><div class="tl-row">
+      <div class="tl-y">2017.03 → 2018.01</div>
+      <div><div class="tl-co">심네트</div><div class="tl-role">사원</div><div class="tl-work">드론 임무계획 · 시뮬레이터 · ICD/SDD 문서</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="s" id="sec-company">
+  <div class="s-head">
+    <div class="num">§04 / Company Projects</div>
+    <h2>주요 <span class="acc">프로젝트</span></h2>
+    <div class="meta">selected 6 · company work</div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card" id="proj-lgnff">
+      <div class="proj-tags"><span class="ptag">YMX</span><span class="ptag">2024.05–2025.01</span><span class="ptag">LG PRI</span></div>
+      <h3>LG NFF</h3>
+      <div class="pdesc">클라이언트 모듈 설계 및 실시간 데이터 연동</div>
+      <ul><li>클라이언트 모듈 설계 및 핵심 기능 개발</li><li>실시간 데이터 연동 및 API 설계 · 구현</li></ul>
+      <div class="tech">C# · Unity · MSSQL · Git</div>
+    </div>
+
+    <div class="proj-card" id="proj-eguide">
+      <div class="proj-tags"><span class="ptag">YMX</span><span class="ptag">2025.01–2025.10</span><span class="ptag">LG PRI</span></div>
+      <h3>LG E-Guide</h3>
+      <div class="pdesc">클라이언트 설계 + 유니티 저작도구 기능 구현</div>
+      <ul><li>클라이언트 설계 및 핵심 기능 개발</li><li>유니티 저작도구 단에서의 기능 구현</li></ul>
+      <div class="tech">C# · Unity · Git</div>
+    </div>
+
+    <div class="proj-card" id="proj-hangidae">
+      <div class="proj-tags"><span class="ptag">YMX</span><span class="ptag">2025.10–2026.05</span><span class="ptag">한국기술교육대</span></div>
+      <h3>한기대 가상훈련</h3>
+      <div class="pdesc">클라이언트 핵심 기능 + 데이터 연동</div>
+      <ul><li>클라이언트 핵심 기능 개발</li><li>데이터 연동 및 API 설계 · 구현</li></ul>
+      <div class="tech">C# · Unity · Git</div>
+    </div>
+
+    <div class="proj-card" id="proj-korail">
+      <div class="proj-tags"><span class="ptag hot">AR</span><span class="ptag">YMX</span><span class="ptag">2024.11–24.12</span><span class="ptag">KORAIL</span></div>
+      <h3>철도수리가이드 AR POC</h3>
+      <div class="pdesc">AR 콘텐츠 + 데이터 연동 PoC</div>
+      <ul><li>클라이언트 모듈 설계 및 핵심 기능 개발</li><li>AR 콘텐츠 · 데이터 연동 및 API 설계 · 구현</li></ul>
+      <div class="tech">C# · Unity · AR Foundation · Git</div>
+    </div>
+
+    <div class="proj-card feature" id="proj-smarttarget">
+      <div class="proj-tags"><span class="ptag hot">HoloLens 2</span><span class="ptag hot">BLE</span><span class="ptag">세종대 XR_Lab</span><span class="ptag">2021.01–22.12</span><span class="ptag">KOCCA</span></div>
+      <h3>스마트 타겟 및 훈련 프로그램</h3>
+      <div class="pdesc">HoloLens 2 + BLE 멀티플랫폼 사격 시뮬레이션 · 경찰청 · 군부대 납품</div>
+      <ul>
+        <li>클라이언트 설계 및 핵심 기능 개발</li>
+        <li>HoloLens 2와 Windows OS 프로그램 간 네트워크 연동</li>
+        <li>Bluetooth(BLE)를 통한 밀리터리 장비 · Windows 서버 연동</li>
+        <li>스마트 타겟 2D · Windows · Android 멀티플랫폼 프로그램 개발</li>
+        <li>경찰청 · 군부대 납품용 사격 연습 프로그램 Unity 제작</li>
+      </ul>
+      <div class="tech">C# · Unity · MYSQL · SVN · HoloLens 2 · BLE</div>
+    </div>
+
+    <div class="proj-card" id="proj-drone">
+      <div class="proj-tags"><span class="ptag">심네트</span><span class="ptag">2017.06–18.01</span><span class="ptag">국방 R&D</span></div>
+      <h3>드론 임무계획 · 시뮬레이터</h3>
+      <div class="pdesc">Unity3D 드론 처리기 + ICD/SDD/PDR/CDR 산출물</div>
+      <ul>
+        <li>Unity3D 기반 드론 임무계획 / 할당 처리기 제작</li>
+        <li>통합전시 처리기 UI 설계 및 제작</li>
+        <li>드론 조종 실험용 드론 시뮬레이터 제작</li>
+        <li>ICD · SDD · PDR · CDR 산출물 작성 참여</li>
+      </ul>
+      <div class="tech">C# · Unity3D · SVN</div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§05 / Personal Works</div>
+    <h2>출시 작품 · <span class="acc">사이드</span></h2>
+    <div class="meta">6 entries · with AI Agents</div>
+  </div>
+  <p style="font-size:14.5px;color:var(--fg-2);margin-bottom:32px;max-width:840px;line-height:1.7">모든 사이드 프로젝트는 <b style="color:var(--cyan)">AI Agent (Claude Code · Codex 등) 기반 개발 생산성</b>을 활용한 학습 · 구현 · 검증 사이클로 진행. 기획 · 설계 · 통합 · 검증 · 운영은 본인이 직접 수행.</p>
+
+  <div class="proj-grid">
+    <div class="proj-card feature" id="proj-dreampath">
+      <div class="proj-tags">
+        <span class="ptag gold">★ 공모전 출품</span>
+        <span class="ptag hot">RAG · 라이브 운영</span>
+        <span class="ptag">2026</span>
+      </div>
+      <h3>DreamPath (꿈의 정원)</h3>
+      <div class="pdesc">초·중학생 진로 탐색 RAG 서비스 — 제8회 교육 공공데이터 AI 활용대회 출품작</div>
+      <ul>
+        <li>초·중학생(8~15세) 진로 탐색 5단계 흐름 자체 설계</li>
+        <li>교육 공공데이터(커리어넷 3종) + Q-Net 자격증 결합 RAG 추천 서비스 적용</li>
+        <li>AI Agent와 협업하여 시스템 구축 — 본인은 기획 · 설계 · 데이터셋 큐레이션 · 배포 운영</li>
+        <li>공공누리 라이선스 검증 · 개인정보 미수집 · "꿈의 정원" UX 메타포 기획</li>
+      </ul>
+      <div class="tech">Gemini 2.5 Flash · gemini-embedding-001 · Vercel · RAG · 임베딩 검색</div>
+      <a class="url" href="https://dreampath-tau.vercel.app" target="_blank">dreampath-tau.vercel.app</a>
+    </div>
+
+    <div class="proj-card" id="proj-savehormuz">
+      <div class="proj-tags"><span class="ptag gold">★ Steam 출시 예정</span><span class="ptag">Godot</span><span class="ptag">2026.07</span></div>
+      <h3>2D 디펜스 게임</h3>
+      <div class="pdesc">미경험 엔진(Godot) 단기 학습 → 상용 출시</div>
+      <ul>
+        <li>미경험 엔진 단기 학습 → Steam 상용 출시 일정 확보</li>
+        <li>AI Agent 기반 학습 · 구현 · 디버깅 사이클 단축</li>
+        <li>게임 기획 · Godot 검증 · 통합 · Steam 출시 운영 본인 수행</li>
+      </ul>
+      <div class="tech">Godot · GDScript · Steamworks</div>
+    </div>
+
+    <div class="proj-card" id="proj-novel">
+      <div class="proj-tags"><span class="ptag hot">멀티 에이전트</span><span class="ptag">비공개</span></div>
+      <h3>소설 집필 엔진</h3>
+      <div class="pdesc">이종 LLM 멀티 에이전트 오케스트레이션 PoC</div>
+      <ul>
+        <li>입력: 장르 · 분량 · 한 줄 요약 → 출력: 소설 초안 자동 생성</li>
+        <li>작문(Claude · Codex) + 검수(Gemini) 멀티 에이전트 파이프라인 설계</li>
+        <li>편당 3,500~4,000자 × 100편 ≈ 35~40만 자 작품 1편 완주</li>
+        <li>AI Agent 시스템 자체를 직접 설계 · 운영</li>
+      </ul>
+      <div class="tech">Claude · Codex · Gemini · 프롬프트 엔지니어링</div>
+    </div>
+
+    <div class="proj-card" id="proj-overthestrait">
+      <div class="proj-tags"><span class="ptag hot">강화학습</span><span class="ptag">GitHub</span><span class="ptag">2026.04</span></div>
+      <h3>OverTheStrait</h3>
+      <div class="pdesc">호르무즈 해협 AI 항법 시뮬레이터 — Unity 6 + ML-Agents</div>
+      <ul>
+        <li>PPO 강화학습으로 자율 선박 AI 항법 학습</li>
+        <li>Copernicus DEM 90m 위성 데이터 → Unity Terrain</li>
+        <li>에이전트 50개 동시 학습 (최대 250개 병렬)</li>
+        <li>커리큘럼: 항법 → 암초 회피 → 미사일 회피</li>
+      </ul>
+      <div class="tech">Unity 6 · ML-Agents · PPO · C# · Python 3 · URP</div>
+      <a class="url" href="https://github.com/arkjsj86/OverTheStrait" target="_blank">github.com/arkjsj86/OverTheStrait</a>
+    </div>
+
+    <div class="proj-card" id="proj-terrain">
+      <div class="proj-tags"><span class="ptag hot">GPU</span><span class="ptag">Compute Shader</span><span class="ptag">2026.04</span></div>
+      <h3>ProceduralTerrain</h3>
+      <div class="pdesc">Unity URP 절차적 지형 생성 — CPU → GPU 가속</div>
+      <ul>
+        <li>fBm 노이즈 기반 절차적 높이맵 생성</li>
+        <li>입자 기반 수압 침식 — CPU → GPU Compute Shader 이식</li>
+        <li>ComputeBuffer 활용 50,000개 물방울 병렬 처리</li>
+        <li>높이 · 경사 기반 4색 자동 블렌딩 URP HLSL 셰이더</li>
+      </ul>
+      <div class="tech">Unity 6 · URP · HLSL · Compute Shader · ComputeBuffer</div>
+      <a class="url" href="https://github.com/arkjsj86/ProceduralTerrain" target="_blank">github.com/arkjsj86/ProceduralTerrain</a>
+    </div>
+
+    <div class="proj-card" id="proj-newsbox">
+      <div class="proj-tags"><span class="ptag">라이브</span><span class="ptag">GitHub Actions</span><span class="ptag">2026.04</span></div>
+      <h3>NewsBox</h3>
+      <div class="pdesc">한국어 RSS 5탭 큐레이션 정적 사이트</div>
+      <ul>
+        <li>AI · 게임 · 연예 · e스포츠 · Unity 5개 탭 RSS 큐레이션</li>
+        <li>기사 중복 제거 + 키워드 기반 분류 규칙 설계</li>
+        <li>GitHub Actions 기반 주기 자동 갱신</li>
+        <li>e스포츠 탭: LCK → MSI → Worlds 우선순위</li>
+      </ul>
+      <div class="tech">JavaScript · RSS · JSON · GitHub Actions</div>
+      <a class="url" href="https://arkjsj86.github.io/NewsBox" target="_blank">arkjsj86.github.io/NewsBox</a>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§06 / Education</div>
+    <h2><span class="acc">학력</span> · 자격</h2>
+    <div class="meta">academic + certifications</div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-row"><div class="k">학력</div><div class="v">한국산업기술대학교 게임공학과<span class="det">2011.03 — 2016.06 · 4년제 졸업 · 학점 3.0 / 4.5</span></div></div>
+    <div class="edu-row"><div class="k">졸업작품</div><div class="v">DirectX9 기반 3D 미로 탈출 게임<span class="det">학위논문 · 졸업작품</span></div></div>
+    <div class="edu-row"><div class="k">자격증</div><div class="v">정보처리기사<span class="det">2018.06 · 한국산업인력공단</span></div></div>
+    <div class="edu-row"><div class="k">교육</div><div class="v">서울게임아카데미 · Unity3D 게임 제작<span class="det">2016.04 — 2016.07</span></div></div>
+    <div class="edu-row"><div class="k">교육</div><div class="v">서울게임아카데미 · C++ · STL · API · DirectX9 · Unity3D<span class="det">2013.02 — 2013.12</span></div></div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-head">
+    <div class="num">§07 / About</div>
+    <h2><span class="acc">자기</span>소개</h2>
+    <div class="meta">three paragraphs</div>
+  </div>
+  <div class="about-grid">
+    <div>
+      <div class="quote">AI를 도구로,<br>새 도메인으로.</div>
+      <div class="quote-sub">— Park Jonghwa · 2026</div>
+    </div>
+    <div>
+      <p>Unity 클라이언트 개발자로 9년차에 걸쳐 <b>AR · VR · XR · 메타버스 · 시뮬레이션</b> 등 다양한 도메인을 Windows · Android · HoloLens 2 멀티플랫폼에서 출시해 왔습니다.</p>
+      <p>최근에는 <b>Claude Code · Codex 등 AI Agent 기반 개발 생산성을 적극 활용</b>하여 미경험 엔진(Godot)으로 Steam 2D 디펜스 게임 출시(2026.07 예정)까지 완주했으며, 교육 공공데이터와 RAG를 결합한 초·중학생 진로 탐색 서비스 <b>DreamPath</b>를 기획·구축해 제8회 교육 공공데이터 AI 활용대회에 출품·라이브 운영 중입니다.</p>
+      <p>회사 업무에서 다져진 <b>클라이언트 모듈 설계·외부 장비 연동·문서화</b> 역량 위에, AI Agent를 도구로 다루는 빠른 학습·구현 사이클과 <b>AI Agent 시스템 자체를 설계하는 능력</b>을 결합해 새 도메인에서도 결과를 만드는 시니어로 기여하고자 합니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>LET'S<br>TALK.</h2>
+  <div class="sub">제안 · 면접 · 협업 · 잡담 — 무엇이든 환영합니다. 새 도메인이라도 함께 만들어 봅시다.</div>
+  <a class="cta" href="mailto:contact@example.com?subject=박종화%20님께%20제안%20드립니다"><span>문의하기 · 메일 보내기</span></a>
+  <div class="links">
+    <a href="https://github.com/arkjsj86" target="_blank">github.com/arkjsj86</a>
+    <a href="https://dreampath-tau.vercel.app" target="_blank">dreampath-tau.vercel.app</a>
+    <a href="https://arkjsj86.github.io/NewsBox" target="_blank">arkjsj86.github.io/NewsBox</a>
+  </div>
+</section>
+
+<footer class="ft">© 2026 Park Jonghwa · Game Studio Style · Made with Manrope & Black Han Sans</footer>
+
+</main>
+</body>
+</html>
