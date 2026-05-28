@@ -1,0 +1,18 @@
+# 원본 문서에서 추출한 중간 텍스트 (재생성 가능)
+_resume.txt
+_resume_pdfplumber.txt
+_projects.txt
+
+# 사이드 프로젝트 정리 — private repo·미출시 게임·공모전 정보 포함, 공개 금지
+_side_projects.txt
+
+# 개인정보 포함 원본 문서·스크립트 — 공개 금지 (로컬 보관)
+*.pdf
+*.docx
+_build_resume.js
+
+# Node 의존성 (전역 설치 사용 중)
+node_modules/
+
+# Word 임시 잠금 파일
+~$*.docx

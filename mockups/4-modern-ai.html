@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>박종화 — Resume · 시안 4 · Modern AI-Era</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root{
+    --bg:#F8F6F0;
+    --bg-soft:#F1ECE0;
+    --surface:#FFFFFF;
+    --ink:#15140F;
+    --ink-2:#3D3A33;
+    --ink-3:#6B6760;
+    --ink-4:#9B968B;
+    --line:#E6E1D2;
+    --line-2:#CFC8B5;
+    --accent:#175F58;    /* deep jade teal */
+    --accent-2:#B8542C;  /* copper */
+    --accent-3:#D89846;  /* amber */
+    --warm:#F4E9D2;
+    --cool:#D4E3DC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Pretendard Variable','Bricolage Grotesque','Noto Sans KR',sans-serif;
+    font-weight:400;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  body{
+    background-image:
+      radial-gradient(900px 600px at -10% -10%, var(--warm) 0%, transparent 55%),
+      radial-gradient(800px 600px at 110% 30%, var(--cool) 0%, transparent 50%),
+      radial-gradient(700px 500px at 50% 110%, #EFE7D3 0%, transparent 55%);
+    background-attachment:fixed;
+    min-height:100vh;
+  }
+  /* Grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.035;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  /* Nav */
+  .nav{position:fixed;top:24px;left:24px;z-index:200}
+  .nav a{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-2);text-decoration:none;
+    padding:9px 14px;background:var(--surface);border:1px solid var(--line);
+    border-radius:999px;backdrop-filter:blur(8px);
+  }
+  .nav a:hover{border-color:var(--accent);color:var(--accent)}
+  /* Layout */
+  .page{max-width:1080px;margin:0 auto;padding:64px 40px 120px;position:relative}
+  /* Hero */
+  .hero{padding:80px 0 60px;position:relative}
+  .badge-row{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);
+    padding:7px 14px;background:rgba(23,95,88,.08);border:1px solid rgba(23,95,88,.18);
+    border-radius:999px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px rgba(184,84,44,.12)}
+  .badge.copper{color:var(--accent-2);background:rgba(184,84,44,.08);border-color:rgba(184,84,44,.18)}
+  .hero h1{
+    font-family:'Bricolage Grotesque','Pretendard Variable',sans-serif;
+    font-variation-settings:"opsz" 96;
+    font-weight:500;font-size:clamp(64px,9vw,128px);line-height:.95;
+    letter-spacing:-0.04em;margin-bottom:18px;color:var(--ink);
+  }
+  .hero h1 em{
+    font-family:'Instrument Serif','Gowun Batang',serif;
+    font-style:italic;font-weight:400;color:var(--accent);
+    letter-spacing:-0.02em;
+  }
+  .hero .role{
+    font-family:'Pretendard Variable',sans-serif;
+    font-size:21px;line-height:1.5;color:var(--ink-2);max-width:760px;font-weight:300;margin-bottom:40px;
+  }
+  .hero .role .it{
+    font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent-2);font-size:24px;
+  }
+  /* Quick facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:32px}
+  .fact{padding:22px 24px;background:var(--surface)}
+  .fact .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px}
+  .fact .v{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;line-height:1.2}
+  .fact .v em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+  /* Section */
+  .sec{margin-top:96px;position:relative}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px}
+  .sec-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase}
+  .sec h2{
+    font-family:'Bricolage Grotesque','Pretendard Variable',sans-serif;
+    font-variation-settings:"opsz" 72;
+    font-weight:400;font-size:clamp(40px,5vw,68px);line-height:1;
+    letter-spacing:-0.03em;color:var(--ink);
+  }
+  .sec h2 em{
+    font-family:'Instrument Serif','Gowun Batang',serif;
+    font-style:italic;font-weight:400;color:var(--accent-2);
+  }
+  .sec-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-4);letter-spacing:.12em;text-transform:uppercase}
+  /* Capabilities — pill cards */
+  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .cap{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:22px 24px;transition:all .25s ease;display:flex;gap:18px;align-items:flex-start;
+  }
+  .cap:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+  .cap .n{
+    flex-shrink:0;
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:32px;
+    color:var(--accent-2);line-height:1;padding-top:4px;min-width:32px;
+  }
+  .cap p{font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+  .cap p b{color:var(--ink);font-weight:500}
+  .cap p .it{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-size:1.05em}
+  /* Tech stack — clean narrative blocks */
+  .stack{display:flex;flex-direction:column;gap:18px}
+  .stack-block{
+    background:var(--surface);border:1px solid var(--line);border-radius:24px;
+    padding:32px;position:relative;overflow:hidden;
+  }
+  .stack-block.main{background:linear-gradient(135deg, rgba(23,95,88,.06), rgba(184,84,44,.04));border-color:rgba(23,95,88,.2)}
+  .stack-block .label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:14px;
+  }
+  .stack-block.main .label{color:var(--accent-2)}
+  .stack-block h3{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+    font-size:32px;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:8px;
+  }
+  .stack-block h3 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-2)}
+  .stack-block.main h3{font-size:42px}
+  .stack-block .sub{font-size:14px;color:var(--ink-3);margin-bottom:18px;font-style:italic;font-family:'Instrument Serif',serif;font-size:16px}
+  .stack-block ul{list-style:none}
+  .stack-block li{
+    padding:8px 0 8px 22px;position:relative;font-size:15px;line-height:1.55;color:var(--ink-2);
+    border-top:1px dashed var(--line);
+  }
+  .stack-block li:first-child{border-top:none;padding-top:0}
+  .stack-block li::before{content:"";position:absolute;left:0;top:18px;width:12px;height:1px;background:var(--accent)}
+  .stack-block li:first-child::before{top:10px}
+  .stack-block li b{color:var(--ink);font-weight:500}
+  .stack-block .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .pill{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    padding:5px 12px;border-radius:999px;
+    background:var(--bg-soft);color:var(--ink-2);border:1px solid var(--line);
+  }
+  .pill.accent{background:rgba(23,95,88,.08);color:var(--accent);border-color:rgba(23,95,88,.2)}
+  .pill.copper{background:rgba(184,84,44,.08);color:var(--accent-2);border-color:rgba(184,84,44,.2)}
+  /* Career */
+  .career{display:flex;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .crow{
+    display:grid;grid-template-columns:180px 1.3fr 1.6fr 1fr;gap:24px;
+    padding:18px 24px;border-bottom:1px solid var(--line);align-items:baseline;font-size:13.5px;
+  }
+  .crow:last-child{border-bottom:none}
+  .crow:hover{background:var(--bg-soft)}
+  .crow .y{font-family:'JetBrains Mono',monospace;color:var(--ink-3);letter-spacing:.04em}
+  .crow .y.now{color:var(--accent-2)}
+  .crow .y.now::before{content:"●";color:var(--accent-2);margin-right:5px}
+  .crow .co{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;color:var(--ink);font-size:17px;letter-spacing:-0.005em}
+  .crow .role{color:var(--ink-3)}
+  .crow .work{color:var(--ink-3);font-size:13px;line-height:1.4}
+  /* Projects */
+  .proj{
+    background:var(--surface);border:1px solid var(--line);border-radius:24px;
+    padding:32px;margin-top:18px;transition:all .25s ease;
+  }
+  .proj:hover{border-color:var(--accent);box-shadow:0 14px 40px rgba(0,0,0,.06)}
+  .proj.feature{background:linear-gradient(135deg, rgba(216,152,70,.08), rgba(23,95,88,.04));border-color:rgba(216,152,70,.3)}
+  .proj-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;gap:18px;flex-wrap:wrap}
+  .proj-head h3{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+    font-size:28px;line-height:1.1;letter-spacing:-0.015em;color:var(--ink);
+  }
+  .proj-head h3 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent-2)}
+  .proj-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .proj-tags .pill{font-size:10.5px;letter-spacing:.06em}
+  .proj-sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:var(--ink-3);margin-bottom:18px;line-height:1.45}
+  .proj ul{list-style:none}
+  .proj li{
+    padding:5px 0 5px 22px;position:relative;font-size:14.5px;line-height:1.6;color:var(--ink-2);
+  }
+  .proj li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:1px;background:var(--accent)}
+  .proj li b{color:var(--ink);font-weight:500}
+  .proj .tech{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-3)}
+  .proj .tech::before{content:"⌘ ";color:var(--accent)}
+  .proj .url{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);text-decoration:none;padding-bottom:2px;border-bottom:1px dotted var(--accent)}
+  .proj .url:hover{color:var(--accent-2);border-color:var(--accent-2)}
+  /* Education compact */
+  .edu{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    overflow:hidden;
+  }
+  .erow{
+    display:grid;grid-template-columns:110px 1fr 1fr;gap:18px;
+    padding:18px 24px;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .erow:last-child{border-bottom:none}
+  .erow .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
+  .erow .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;color:var(--ink);font-size:16px}
+  .erow .det{font-size:13px;color:var(--ink-3);font-family:'JetBrains Mono',monospace}
+  /* About */
+  .about{display:grid;grid-template-columns:1fr 2fr;gap:54px;align-items:start}
+  .about .lead{
+    font-family:'Instrument Serif','Gowun Batang',serif;font-style:italic;font-weight:400;
+    font-size:48px;line-height:1.05;color:var(--accent);letter-spacing:-0.02em;
+  }
+  .about .lead .copper{color:var(--accent-2)}
+  .about p{font-size:16px;line-height:1.8;color:var(--ink-2);margin-bottom:18px}
+  .about p b{color:var(--ink);font-weight:500}
+  .about p .it{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-size:1.05em}
+  /* Contact */
+  .contact{
+    margin-top:120px;padding:64px;border-radius:32px;
+    background:linear-gradient(135deg, var(--surface) 0%, rgba(244,233,210,.6) 50%, var(--surface) 100%);
+    border:1px solid var(--line);
+    display:grid;grid-template-columns:1.4fr auto;gap:48px;align-items:center;position:relative;overflow:hidden;
+  }
+  .contact::before{
+    content:"";position:absolute;top:-30%;right:-10%;width:480px;height:480px;
+    background:radial-gradient(circle, rgba(23,95,88,.10), transparent 70%);
+    border-radius:50%;pointer-events:none;
+  }
+  .contact h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:500;
+    font-size:clamp(40px,5vw,68px);line-height:.95;letter-spacing:-0.025em;
+    color:var(--ink);position:relative;
+  }
+  .contact h2 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+  .contact .sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;color:var(--ink-3);margin-top:14px;position:relative}
+  .cta{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:20px 30px;background:var(--ink);color:var(--bg);
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;letter-spacing:.02em;
+    text-decoration:none;border-radius:999px;transition:all .25s ease;position:relative;
+    box-shadow:0 12px 36px rgba(0,0,0,.12);
+  }
+  .cta:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 16px 42px rgba(23,95,88,.25)}
+  .cta::after{content:"→";font-family:'Instrument Serif',serif;font-style:italic;font-size:20px}
+  /* Footer links */
+  .footer-links{margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;position:relative}
+  .footer-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-3);text-decoration:none;border-bottom:1px dotted var(--ink-4)}
+  .footer-links a:hover{color:var(--accent)}
+  .colophon{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-4);letter-spacing:.16em;text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  .side-note{
+    margin-top:24px;padding:18px 22px;background:rgba(216,152,70,.08);
+    border-left:3px solid var(--accent-3);border-radius:8px;
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;color:var(--ink-2);line-height:1.55;
+  }
+  .side-note b{color:var(--accent-2);font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+  @media (max-width:900px){
+    .page{padding:48px 20px 80px}
+    .facts{grid-template-columns:1fr 1fr}
+    .caps{grid-template-columns:1fr}
+    .crow{grid-template-columns:1fr;gap:4px}
+    .erow{grid-template-columns:1fr;gap:4px}
+    .contact{grid-template-columns:1fr;padding:36px}
+    .about{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+<nav class="nav"><a href="index.html">← 시안 비교</a></nav>
+
+<main class="page">
+
+<section class="hero">
+  <div class="badge-row">
+    <span class="badge"><span class="dot"></span>Unity 8년차 · 이직 준비 중</span>
+    <span class="badge copper">2026 · Seoul</span>
+  </div>
+  <h1>박종화<br><em>/ Park Jonghwa</em></h1>
+  <div class="role">
+    <span class="it">Unity 클라이언트 개발자.</span> AR · VR · XR · 메타버스 · 시뮬레이션을 다수 출시한 멀티플랫폼 경험 위에, AI Agent 기반 개발 생산성으로 새 도메인을 빠르게 흡수하는 시니어.
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="k">Experience</div><div class="v"><em>8</em>년 1개월</div></div>
+    <div class="fact"><div class="k">Companies</div><div class="v"><em>7</em>개</div></div>
+    <div class="fact"><div class="k">Main Stack</div><div class="v">C# / Unity</div></div>
+    <div class="fact"><div class="k">AI Agents</div><div class="v">Claude · Codex · Gemini</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 01 / Capabilities</div>
+      <h2>핵심 <em>역량.</em></h2>
+    </div>
+    <div class="sec-meta">7 entries</div>
+  </div>
+  <div class="caps">
+    <div class="cap"><div class="n">i.</div><p><b>Unity 기반 멀티플랫폼(Windows / Android / HoloLens 2) 클라이언트 개발 8년차</b>, 7개 회사 · 다수 도메인 경험.</p></div>
+    <div class="cap"><div class="n">ii.</div><p>AR · VR · XR · 메타버스 · 디지털트윈 · 군용 시뮬레이션 등 <b>이종 도메인 대응력</b>.</p></div>
+    <div class="cap"><div class="n">iii.</div><p><span class="it">AI Agent (Claude Code · Codex 등) 기반 개발 생산성</span>으로 미경험 엔진(Godot)을 단기간 학습해 <b>Steam 2D 디펜스 게임 출시(2026.07 예정)</b>까지 완주.</p></div>
+    <div class="cap"><div class="n">iv.</div><p><span class="it">이종 LLM 멀티 에이전트 시스템 직접 설계 · 운영</span> — Claude Code · Codex(작문) + Gemini(검수)로 편당 3,500~4,000자 × 100편 소설 1편 완주 PoC.</p></div>
+    <div class="cap"><div class="n">v.</div><p><span class="it">AI Agent를 활용한 RAG 서비스 기획 · 라이브 배포</span> — 교육 공공데이터 + Gemini 기반 <b>DreamPath</b>, 제8회 교육 공공데이터 AI 활용대회 출품.</p></div>
+    <div class="cap"><div class="n">vi.</div><p>강화학습(ML-Agents/PPO), GPU Compute Shader · HLSL 등 <b>AI · 그래픽스 영역을 사이드 프로젝트로 확장 중</b>.</p></div>
+    <div class="cap"><div class="n">vii.</div><p>클라이언트 모듈 설계, 외부 장비 연동(BLE · WebSocket), 데이터 연동 API 설계, <b>ICD · SDD · PDR · CDR 문서화 경험</b>.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 02 / Tech Stack</div>
+      <h2>기술 <em>스택.</em></h2>
+    </div>
+    <div class="sec-meta">narrative · honest attribution</div>
+  </div>
+
+  <div class="stack">
+    <div class="stack-block main">
+      <div class="label">★ 주력 기술</div>
+      <h3>C# · <em>Unity</em></h3>
+      <div class="sub">회사 업무 8년차 일상 실무</div>
+    </div>
+
+    <div class="stack-block">
+      <div class="label">회사 프로젝트로 다뤄본 영역 · on the job</div>
+      <h3>실무로 다져진 <em>영역.</em></h3>
+      <ul>
+        <li><b>Windows · Android · HoloLens 2</b> 멀티플랫폼 클라이언트 개발</li>
+        <li>AR · VR · XR · 메타버스 · 디지털트윈 · 군용 시뮬레이션 등 도메인 콘텐츠 제작</li>
+        <li><b>BLE · Bluetooth · WebSocket · TCP/IP</b> 외부 장비 · 서버 연동</li>
+        <li>Unity 저작도구 단 기능 구현, <b>URP · Shader Graph</b> 기반 그래픽 작업</li>
+        <li>Git · SVN 협업, <b>ICD · SDD · PDR · CDR</b> 등 산출물 문서 작성</li>
+      </ul>
+    </div>
+
+    <div class="stack-block">
+      <div class="label">AI와 함께 사이드 프로젝트로 활용 · with ai agents</div>
+      <h3>실험 중인 <em>영역.</em></h3>
+      <div class="sub">AI Agent와 협업 · 본인은 기획 · 설계 · 운영</div>
+      <ul>
+        <li><b>Godot 엔진</b> — 미경험 엔진 학습 + Steam 출시 흐름 체험</li>
+        <li><b>Unity ML-Agents · PPO</b> 강화학습 환경 구성 체험</li>
+        <li><b>GPU Compute Shader · HLSL · fBm 노이즈</b> 등 그래픽스 패턴 체험</li>
+        <li><b>RAG (검색 · 증강 · 생성 · 검증) · 임베딩 검색 · 프롬프트 엔지니어링</b> — 공모전 출품작 적용</li>
+        <li><b>Claude · Codex · Gemini 이종 LLM 멀티 에이전트 오케스트레이션</b> 설계</li>
+        <li><b>GitHub Actions</b> 기반 정적 사이트 자동 갱신 운영</li>
+      </ul>
+    </div>
+
+    <div class="stack-block">
+      <div class="label">AI Agent 일상 활용 · daily driver</div>
+      <h3>매일 쓰는 <em>도구들.</em></h3>
+      <div class="pills">
+        <span class="pill copper">Claude Code</span>
+        <span class="pill copper">Codex</span>
+        <span class="pill copper">Gemini</span>
+      </div>
+      <div class="sub" style="margin-top:14px;margin-bottom:0">개발 생산성 향상 목적으로 일상적으로 활용</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 03 / Career</div>
+      <h2>경력 <em>요약.</em></h2>
+    </div>
+    <div class="sec-meta">7 companies · 8 years</div>
+  </div>
+  <div class="career">
+    <div class="crow"><div class="y now">2024.04 ~ 현재</div><div class="co">㈜와이엠엑스 (YMX)</div><div class="role">책임 · 클라이언트</div><div class="work">LG E-Guide · LG NFF · 한기대 · KORAIL AR</div></div>
+    <div class="crow"><div class="y">2023.10 ~ 2024.04</div><div class="co">심지</div><div class="role">선임연구원 · 앱개발</div><div class="work">VR 전시장 · JSON 데이터 가시화</div></div>
+    <div class="crow"><div class="y">2023.02 ~ 2023.06</div><div class="co">이디홀딩스</div><div class="role">과장 · 팀원</div><div class="work">메타버스 플랫폼 프로토타입 · 오픈베타</div></div>
+    <div class="crow"><div class="y">2021.01 ~ 2022.12</div><div class="co">세종대학교산학협력단 · XR_Lab</div><div class="role">선임연구원 · 팀원</div><div class="work">KOCCA 스마트 타겟 · HoloLens 2 + BLE</div></div>
+    <div class="crow"><div class="y">2020.09 ~ 2020.12</div><div class="co">에이티에스</div><div class="role">사원</div><div class="work">스마트 타겟 게임 · 모듈화</div></div>
+    <div class="crow"><div class="y">2018.04 ~ 2020.07</div><div class="co">트램폴린 · VI팀</div><div class="role">사원</div><div class="work">UX · 카메라 · 태블릿 · 자동차 보고용 프로토타입</div></div>
+    <div class="crow"><div class="y">2017.03 ~ 2018.01</div><div class="co">심네트</div><div class="role">사원</div><div class="work">드론 임무계획 · 시뮬레이터 · ICD/SDD</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 04 / Company Projects</div>
+      <h2>주요 <em>프로젝트.</em></h2>
+    </div>
+    <div class="sec-meta">selected 6</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>LG <em>NFF</em></h3><div class="proj-meta">YMX · 2024.05 — 2025.01 · LG PRI</div></div>
+    <div class="proj-tags"><span class="pill accent">C#</span><span class="pill accent">Unity</span><span class="pill">MSSQL</span></div>
+    <div class="proj-sub">클라이언트 모듈 설계 및 실시간 데이터 연동</div>
+    <ul><li>클라이언트 모듈 설계 및 핵심 기능 개발</li><li>실시간 데이터 연동 및 API 설계 · 구현</li></ul>
+    <div class="tech">C#, Unity, MSSQL, Git</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>LG <em>E-Guide</em></h3><div class="proj-meta">YMX · 2025.01 — 2025.10 · LG PRI</div></div>
+    <div class="proj-tags"><span class="pill accent">C#</span><span class="pill accent">Unity</span></div>
+    <div class="proj-sub">클라이언트 설계 + 유니티 저작도구 기능 구현</div>
+    <ul><li>클라이언트 설계 및 핵심 기능 개발</li><li>유니티 저작도구 단에서의 기능 구현</li></ul>
+    <div class="tech">C#, Unity, Git</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>한기대 <em>가상훈련 컨텐츠</em></h3><div class="proj-meta">YMX · 2025.10 — 진행 중 · 한국기술교육대</div></div>
+    <div class="proj-tags"><span class="pill accent">C#</span><span class="pill accent">Unity</span></div>
+    <div class="proj-sub">클라이언트 핵심 기능 + 데이터 연동</div>
+    <ul><li>클라이언트 핵심 기능 개발</li><li>데이터 연동 및 API 설계 · 구현</li></ul>
+    <div class="tech">C#, Unity, Git</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>철도수리가이드 <em>AR POC</em></h3><div class="proj-meta">YMX · 2024.11 — 2024.12 · KORAIL</div></div>
+    <div class="proj-tags"><span class="pill copper">AR</span><span class="pill accent">Unity</span><span class="pill">AR Foundation</span></div>
+    <div class="proj-sub">AR 콘텐츠 + 데이터 연동 PoC</div>
+    <ul><li>클라이언트 모듈 설계 및 핵심 기능 개발</li><li>AR 콘텐츠 · 데이터 연동 및 API 설계 · 구현</li></ul>
+    <div class="tech">C#, Unity, AR Foundation, Git</div>
+  </div>
+
+  <div class="proj feature">
+    <div class="proj-head"><h3>스마트 타겟 및 <em>훈련 프로그램</em></h3><div class="proj-meta">세종대 XR_Lab · 2021.01 — 2022.12 · KOCCA</div></div>
+    <div class="proj-tags"><span class="pill copper">HoloLens 2</span><span class="pill copper">BLE</span><span class="pill accent">Unity</span><span class="pill">MYSQL</span></div>
+    <div class="proj-sub">HoloLens 2 + BLE 멀티플랫폼 사격 시뮬레이션 — 경찰청 · 군부대 납품</div>
+    <ul>
+      <li>클라이언트 설계 및 핵심 기능 개발</li>
+      <li>HoloLens 2와 Windows OS 프로그램 간 <b>네트워크 연동</b></li>
+      <li>Bluetooth(BLE)를 통한 밀리터리 장비 · Windows <b>서버 연동</b></li>
+      <li>스마트 타겟 2D · Windows · Android <b>멀티플랫폼 프로그램 개발</b></li>
+      <li>경찰청 · 군부대 납품용 사격 연습 프로그램 Unity 제작</li>
+    </ul>
+    <div class="tech">C#, Unity, MYSQL, SVN, HoloLens 2, BLE</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>드론 <em>임무계획 및 시뮬레이터</em></h3><div class="proj-meta">심네트 · 2017.06 — 2018.01 · 국방 R&D</div></div>
+    <div class="proj-tags"><span class="pill accent">Unity3D</span><span class="pill">SVN</span><span class="pill">국방</span></div>
+    <div class="proj-sub">Unity3D 드론 처리기 + ICD · SDD · PDR · CDR 산출물</div>
+    <ul>
+      <li>Unity3D 기반 드론 임무계획 / 할당 처리기 제작</li>
+      <li>통합전시 처리기 UI 설계 및 제작</li>
+      <li>드론 조종 실험용 드론 시뮬레이터 제작</li>
+      <li>프로젝트 내 ICD · SDD 문서 및 PDR · CDR 산출물 작성 참여</li>
+    </ul>
+    <div class="tech">C#, Unity3D, SVN</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 05 / Personal Works</div>
+      <h2>출시 작품 · <em>사이드 프로젝트.</em></h2>
+    </div>
+    <div class="sec-meta">6 entries · with AI Agents</div>
+  </div>
+  <div class="side-note"><b>note —</b> 모든 사이드 프로젝트는 AI Agent (Claude Code · Codex 등) 기반 개발 생산성을 활용한 학습 · 구현 · 검증 사이클로 진행. 기획 · 설계 · 통합 · 검증 · 운영은 본인이 직접 수행.</div>
+
+  <div class="proj feature">
+    <div class="proj-head"><h3>DreamPath <em>(꿈의 정원)</em></h3><div class="proj-meta">2026 · 라이브 운영</div></div>
+    <div class="proj-tags"><span class="pill copper">★ 공모전 출품</span><span class="pill accent">RAG</span><span class="pill">Vercel</span><span class="pill">Gemini</span></div>
+    <div class="proj-sub">초·중학생 진로 탐색 RAG 서비스 — 제8회 교육 공공데이터 AI 활용대회 출품작</div>
+    <ul>
+      <li>초·중학생(8~15세) 대상 진로 탐색 서비스 기획 — 적성 진단 → 직업 추천 → 학습 경로의 <b>5단계 흐름 자체 설계</b></li>
+      <li>교육 공공데이터(커리어넷 3종) + Q-Net 자격증을 결합한 <b>RAG (검색 · 증강 · 생성 · 검증)</b> 기반 추천 서비스 적용</li>
+      <li>AI Agent (Claude Code · Codex 등)와 협업하여 시스템 구축 — 본인은 <b>기획 · 설계 결정 · 데이터셋 큐레이션 · 배포 운영</b> 수행</li>
+      <li>공공누리 라이선스 직접 검증 · 개인정보 미수집 · "꿈의 정원" UX 메타포 자체 기획</li>
+    </ul>
+    <div class="tech">Gemini 2.5 Flash, gemini-embedding-001, Vercel, RAG, 임베딩 검색</div>
+    <a class="url" href="https://dreampath-tau.vercel.app" target="_blank">dreampath-tau.vercel.app ↗</a>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>멀티 에이전트 <em>소설 집필 엔진</em></h3><div class="proj-meta">2026 · Personal PoC · 비공개</div></div>
+    <div class="proj-tags"><span class="pill copper">이종 LLM</span><span class="pill copper">멀티 에이전트</span><span class="pill">프롬프트 엔지니어링</span></div>
+    <div class="proj-sub">Claude · Codex · Gemini 이종 LLM 오케스트레이션</div>
+    <ul>
+      <li>입력: 장르 · 분량 · 한 줄 요약 → 출력: 분량 · 장르에 맞는 <b>소설 초안 자동 생성</b></li>
+      <li>작문 에이전트(Claude · Codex) + 검수 · 검열 에이전트(Gemini) 멀티 에이전트 파이프라인 설계</li>
+      <li>편당 3,500~4,000자 × 100편 ≈ <b>35~40만 자 분량 작품 1편 완주</b> 검증</li>
+      <li>AI Agent를 사용하는 단계를 넘어, <b>AI Agent 시스템 자체를 직접 설계 · 운영</b></li>
+    </ul>
+    <div class="tech">Claude Code, Codex, Gemini, 프롬프트 엔지니어링</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>Steam <em>2D 디펜스 게임</em></h3><div class="proj-meta">2026.07 출시 예정 · Godot · Steam</div></div>
+    <div class="proj-tags"><span class="pill copper">★ Steam 출시</span><span class="pill">Godot</span><span class="pill">GDScript</span></div>
+    <div class="proj-sub">미경험 엔진(Godot) 단기 학습 → 상용 출시</div>
+    <ul>
+      <li>미경험 엔진(Godot)을 단기간에 학습하여 <b>Steam 상용 게임 출시 일정 확보</b></li>
+      <li>AI Agent 기반 개발 생산성으로 학습 · 구현 · 디버깅 사이클 단축</li>
+      <li>본인 직접 수행: 게임 기획 · 디자인, Godot 엔진 학습 · 검증, 시스템 통합 · 디버깅, Steam 출시 운영 및 빌드</li>
+    </ul>
+    <div class="tech">Godot, GDScript, Steamworks, AI Agent (Claude Code · Codex)</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>OverTheStrait <em>— AI 항법</em></h3><div class="proj-meta">2026.04 · GitHub</div></div>
+    <div class="proj-tags"><span class="pill copper">강화학습</span><span class="pill">Unity 6</span><span class="pill">ML-Agents</span><span class="pill">PPO</span></div>
+    <div class="proj-sub">호르무즈 해협 자율 선박 시뮬레이터</div>
+    <ul>
+      <li>PPO 기반 강화학습으로 자율 선박 AI 항법 학습</li>
+      <li>Copernicus DEM 90m 위성 고도 데이터를 Unity Terrain RAW로 변환</li>
+      <li>에이전트 50개 동시 학습 + 멀티 프로세스 최대 250개 병렬 학습</li>
+      <li>단계별 커리큘럼: 항법 → 암초 회피 → 미사일 회피</li>
+    </ul>
+    <div class="tech">Unity 6, Unity ML-Agents (release_20), PPO, C#, Python 3, URP</div>
+    <a class="url" href="https://github.com/arkjsj86/OverTheStrait" target="_blank">github.com/arkjsj86/OverTheStrait ↗</a>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>ProceduralTerrain <em>— 절차적 지형</em></h3><div class="proj-meta">2026.04 · GitHub</div></div>
+    <div class="proj-tags"><span class="pill copper">GPU</span><span class="pill">Compute Shader</span><span class="pill">URP</span><span class="pill">HLSL</span></div>
+    <div class="proj-sub">CPU → GPU Compute Shader 이식</div>
+    <ul>
+      <li>fBm 노이즈 기반 절차적 높이맵 생성</li>
+      <li>입자 기반 수압 침식 — CPU → GPU Compute Shader 이식</li>
+      <li>ComputeBuffer 활용 50,000개 물방울 병렬 처리</li>
+      <li>높이 · 경사 기반 4색 자동 블렌딩 URP HLSL 셰이더</li>
+    </ul>
+    <div class="tech">Unity 6, URP, HLSL, Compute Shader, ComputeBuffer, C#</div>
+    <a class="url" href="https://github.com/arkjsj86/ProceduralTerrain" target="_blank">github.com/arkjsj86/ProceduralTerrain ↗</a>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head"><h3>NewsBox <em>— RSS 큐레이션</em></h3><div class="proj-meta">2026.04 · 라이브 서비스</div></div>
+    <div class="proj-tags"><span class="pill copper">라이브</span><span class="pill">JavaScript</span><span class="pill">GitHub Actions</span></div>
+    <div class="proj-sub">한국어 RSS 5탭 큐레이션 정적 사이트</div>
+    <ul>
+      <li>AI · 게임 · 연예 · e스포츠 · Unity 5개 탭 RSS 큐레이션</li>
+      <li>기사 중복 제거 + 키워드 기반 분류 규칙 설계</li>
+      <li>GitHub Actions 기반 주기 자동 갱신 + GitHub Pages 정적 배포</li>
+    </ul>
+    <div class="tech">JavaScript, RSS, JSON, GitHub Actions, GitHub Pages</div>
+    <a class="url" href="https://arkjsj86.github.io/NewsBox" target="_blank">arkjsj86.github.io/NewsBox ↗</a>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 06 / Education</div>
+      <h2>학력 · <em>자격.</em></h2>
+    </div>
+    <div class="sec-meta">academic + certifications</div>
+  </div>
+  <div class="edu">
+    <div class="erow"><div class="k">학력</div><div class="name">한국산업기술대학교 게임공학과</div><div class="det">2011.03 — 2016.06 · 4년제 졸업 · 학점 3.0 / 4.5</div></div>
+    <div class="erow"><div class="k">졸업작품</div><div class="name">DirectX9 기반 3D 미로 탈출 게임</div><div class="det">학위 졸업작품</div></div>
+    <div class="erow"><div class="k">자격증</div><div class="name">정보처리기사</div><div class="det">2018.06 · 한국산업인력공단</div></div>
+    <div class="erow"><div class="k">교육</div><div class="name">서울게임아카데미 · Unity3D 게임 제작</div><div class="det">2016.04 — 2016.07</div></div>
+    <div class="erow"><div class="k">교육</div><div class="name">서울게임아카데미 · C++ · STL · API · DirectX9 · Unity3D</div><div class="det">2013.02 — 2013.12</div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head">
+    <div>
+      <div class="sec-eyebrow">§ 07 / About</div>
+      <h2>자기 <em>소개.</em></h2>
+    </div>
+    <div class="sec-meta">three paragraphs</div>
+  </div>
+  <div class="about">
+    <div class="lead">AI를 도구로,<br><span class="copper">새 도메인을 빠르게.</span></div>
+    <div>
+      <p>Unity 클라이언트 개발자로 8년간 <b>AR · VR · XR · 메타버스 · 시뮬레이션</b> 등 다양한 도메인을 Windows · Android · HoloLens 2 멀티플랫폼에서 출시해 왔습니다.</p>
+      <p>최근에는 <span class="it">Claude Code · Codex 등 AI Agent 기반 개발 생산성을 적극 활용</span>하여 미경험 엔진(Godot)으로 Steam 2D 디펜스 게임 출시(2026.07 예정)까지 완주했으며, 교육 공공데이터와 RAG를 결합한 초·중학생 진로 탐색 서비스 <b>DreamPath</b>를 기획·구축해 제8회 교육 공공데이터 AI 활용대회에 출품·라이브 운영 중입니다. 그 외에도 Claude · Codex · Gemini 이종 LLM을 협업시킨 멀티 에이전트 소설 집필 엔진과 강화학습(ML-Agents/PPO)·GPU Compute Shader 같은 새로운 영역을 사이드 프로젝트로 확장해 가고 있습니다.</p>
+      <p>회사 업무에서 다져진 <b>클라이언트 모듈 설계·외부 장비 연동·문서화</b> 역량 위에, <span class="it">AI Agent를 도구로 다루는 빠른 학습·구현 사이클과 AI Agent 시스템 자체를 설계하는 능력</span>을 결합해 새 도메인에서도 결과를 만드는 시니어로 기여하고자 합니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div>
+    <h2>편지를 <em>받습니다.</em></h2>
+    <div class="sub">제안 · 면접 · 협업 · 잡담 — 무엇이든 환영합니다.</div>
+    <div class="footer-links">
+      <a href="https://github.com/arkjsj86" target="_blank">github.com/arkjsj86</a>
+      <a href="https://dreampath-tau.vercel.app" target="_blank">dreampath-tau.vercel.app</a>
+      <a href="https://arkjsj86.github.io/NewsBox" target="_blank">arkjsj86.github.io/NewsBox</a>
+    </div>
+  </div>
+  <a class="cta" href="mailto:contact@example.com?subject=박종화%20님께%20제안%20드립니다">문의하기</a>
+</section>
+
+<div class="colophon">
+  <div>Set in Bricolage Grotesque & Instrument Serif · Pretendard / Gowun Batang</div>
+  <div>© 2026 Park Jonghwa</div>
+</div>
+
+</main>
+</body>
+</html>

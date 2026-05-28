@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>박종화 이력서 — 디자인 시안 비교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root{
+    --bg:#0E0E0E;
+    --bg-2:#171717;
+    --bg-3:#1F1F1F;
+    --line:#2A2A2A;
+    --fg:#E8E5DE;
+    --fg-2:#A8A29A;
+    --dim:#6A6660;
+    --accent:#E8C97B;
+    --hot:#FF6B5A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--bg);color:var(--fg);
+    font-family:'Pretendard Variable','Noto Sans KR',sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  body{
+    background-image:
+      radial-gradient(700px 400px at 80% -10%, rgba(232,201,123,.06), transparent 60%),
+      radial-gradient(600px 400px at -10% 110%, rgba(255,107,90,.05), transparent 60%);
+  }
+  /* Header */
+  header{padding:64px 48px 24px;max-width:1340px;margin:0 auto}
+  .meta-line{display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--dim);letter-spacing:.18em;text-transform:uppercase;margin-bottom:36px}
+  .meta-line .acc{color:var(--accent)}
+  .meta-line .live{color:var(--hot)}
+  .meta-line .live::before{content:"●";margin-right:6px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  h1{
+    font-family:'Pretendard Variable',sans-serif;
+    font-weight:600;font-size:clamp(48px,7vw,90px);line-height:1;
+    letter-spacing:-0.04em;margin-bottom:14px;
+  }
+  h1 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+  .lead{font-size:18px;color:var(--fg-2);max-width:760px;line-height:1.55;margin-bottom:8px}
+  .lead .it{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-size:20px}
+  .sublead{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim);letter-spacing:.06em;margin-top:14px}
+
+  /* Grid of designs */
+  .grid{padding:48px;max-width:1340px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .card{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:18px;
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:all .3s ease;position:relative;
+  }
+  .card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 18px 48px rgba(0,0,0,.4)}
+  .card .num{
+    position:absolute;top:18px;right:22px;
+    font-family:'Instrument Serif',serif;font-style:italic;font-size:48px;color:var(--accent);line-height:1;z-index:5;
+    text-shadow:0 2px 12px rgba(0,0,0,.6);
+  }
+  /* Preview area for each card uses tinted gradient mimicking the design */
+  .preview{
+    height:280px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--line);
+  }
+  /* Design 1: Editorial cream */
+  .preview.editorial{
+    background:radial-gradient(800px 400px at 20% 20%, #EFE3CA 0%, #F6F1E7 50%, #EDE3CB 100%);
+    color:#1A1611;
+  }
+  .preview.editorial .demo{font-family:'Instrument Serif',serif;font-size:64px;font-style:italic;color:#8B2E1F;letter-spacing:-0.02em;line-height:.95;text-align:center}
+  .preview.editorial .demo b{font-style:normal;color:#1A1611;font-weight:400}
+  .preview.editorial .demo span{display:block;font-size:11px;letter-spacing:.22em;color:#8B2E1F;text-transform:uppercase;margin-top:14px;font-style:normal}
+  .preview.editorial::before{content:"";position:absolute;left:32px;right:32px;top:32px;height:1px;background:#1A1611}
+  .preview.editorial::after{content:"VOL. I · 2026 · SEOUL";position:absolute;left:32px;top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#1A1611}
+
+  /* Design 2: Terminal */
+  .preview.terminal{
+    background:#0A0F14;color:#5BE9DD;
+    background-image:repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(91,233,221,.04) 2px, rgba(91,233,221,.04) 3px);
+  }
+  .preview.terminal .demo{font-family:'JetBrains Mono',monospace;font-size:14px;color:#C9D7E5;text-align:left;padding:24px}
+  .preview.terminal .demo .pmt{color:#7CE38B}
+  .preview.terminal .demo .acc{color:#5BE9DD}
+  .preview.terminal .demo .am{color:#FFA94D}
+  .preview.terminal .demo .blk{color:#7AA2F7}
+  .preview.terminal .demo .pk{color:#F26D7D}
+  .preview.terminal .demo .dim{color:#566679}
+  .preview.terminal::after{
+    content:"_";position:absolute;bottom:20px;right:24px;color:#5BE9DD;font-family:'JetBrains Mono',monospace;font-size:18px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  /* Design 3: Game Studio */
+  .preview.studio{
+    background:radial-gradient(circle at 20% 30%, rgba(255,46,108,.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(0,224,255,.3), transparent 50%), #080612;
+  }
+  .preview.studio::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(106,86,140,.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(106,86,140,.12) 1px, transparent 1px);
+    background-size:32px 32px;
+    mask-image:radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+  .preview.studio .demo{font-family:'Anton','Pretendard Variable',sans-serif;font-size:72px;line-height:.9;letter-spacing:-0.01em;text-align:center;position:relative;text-transform:uppercase}
+  .preview.studio .demo .grad{
+    background:linear-gradient(135deg, #FF2E6C, #9A52FF 50%, #00E0FF);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 4px 24px rgba(255,46,108,.4));
+  }
+  .preview.studio .demo .sub{display:block;font-size:11px;letter-spacing:.3em;color:#FFC857;-webkit-text-fill-color:#FFC857;background:none;margin-top:12px;font-family:'JetBrains Mono',monospace}
+
+  /* Design 4: Modern AI-Era */
+  .preview.modern{
+    background:
+      radial-gradient(900px 600px at -10% -10%, #F4E9D2 0%, transparent 55%),
+      radial-gradient(800px 600px at 110% 30%, #D4E3DC 0%, transparent 50%),
+      #F8F6F0;
+    color:#15140F;
+  }
+  .preview.modern .demo{font-family:'Pretendard Variable',sans-serif;font-weight:500;font-size:56px;letter-spacing:-0.04em;line-height:.95;text-align:center}
+  .preview.modern .demo em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#175F58;display:block;margin-top:4px}
+  .preview.modern .demo .sub{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;color:#B8542C;text-transform:uppercase;margin-top:14px;font-weight:normal}
+  .preview.modern::before{
+    content:"";position:absolute;top:24px;left:24px;
+    width:54px;height:54px;border-radius:50%;
+    background:radial-gradient(circle,#175F58, transparent 70%);
+    filter:blur(8px);opacity:.5;
+  }
+
+  /* Card body */
+  .card-body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .card .tone{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:8px;
+  }
+  .card h2{
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;font-size:26px;
+    letter-spacing:-0.02em;color:var(--fg);margin-bottom:6px;
+  }
+  .card h2 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent)}
+  .card .desc{font-size:14.5px;color:var(--fg-2);line-height:1.55;margin-bottom:18px;flex:1}
+  .card .traits{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .trait{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    padding:4px 10px;border-radius:999px;background:var(--bg-3);color:var(--fg-2);
+    border:1px solid var(--line);
+  }
+  .trait.fit{color:var(--accent);border-color:rgba(232,201,123,.3);background:rgba(232,201,123,.08)}
+  .actions{display:flex;gap:10px;align-items:center}
+  .open{
+    flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 18px;background:var(--fg);color:var(--bg);
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;font-size:14px;letter-spacing:-0.005em;
+    text-decoration:none;border-radius:10px;transition:all .2s ease;
+  }
+  .open:hover{background:var(--accent);transform:translateY(-1px)}
+  .open::after{content:"→";font-family:'Instrument Serif',serif;font-style:italic}
+  .open-tab{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:46px;height:46px;border-radius:10px;background:var(--bg-3);
+    color:var(--fg-2);text-decoration:none;border:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;font-size:14px;transition:all .2s ease;
+  }
+  .open-tab:hover{color:var(--accent);border-color:var(--accent)}
+  /* Footer */
+  footer{padding:32px 48px 64px;max-width:1340px;margin:0 auto;border-top:1px solid var(--line);margin-top:48px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase}
+  .foot .acc{color:var(--accent)}
+
+  @media (max-width:900px){
+    header,.grid,footer{padding:36px 20px}
+    .grid{grid-template-columns:1fr}
+    .preview.studio .demo,.preview.editorial .demo,.preview.modern .demo{font-size:40px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="meta-line">
+    <span><span class="acc">박종화</span> · 이력서 디자인 시안</span>
+    <span class="live">4 designs · review mode</span>
+  </div>
+  <h1>네 가지의 <em>톤.</em></h1>
+  <p class="lead">
+    같은 내용, 다른 옷. <span class="it">Editorial · Terminal · Studio · Modern</span> 네 가지 디자인 톤으로 동일한 이력서를 미리보기합니다.
+    한 가지를 골라 GitHub Pages에 배포하거나, 여러 톤을 섞어 다시 의뢰하실 수 있습니다.
+  </p>
+  <div class="sublead">→ 각 카드를 클릭하거나 새 탭으로 열어 비교 · 모바일 미리보기는 브라우저 너비 조정</div>
+</header>
+
+<main class="grid">
+
+  <article class="card">
+    <div class="num">№ 1</div>
+    <div class="preview editorial">
+      <div class="demo"><b>박종화</b><i>Park Jonghwa.</i><span>Vol. I · 2026 · Seoul</span></div>
+    </div>
+    <div class="card-body">
+      <div class="tone">Editorial · 매거진</div>
+      <h2>Editorial <em>Minimal</em></h2>
+      <p class="desc">매거진형 레이아웃. 따뜻한 크림색 종이, 와인 레드 포인트, 세리프 헤딩과 충분한 여백. 신뢰감과 격조를 동시에 전달.</p>
+      <div class="traits">
+        <span class="trait">Fraunces · Spectral</span>
+        <span class="trait">Noto Serif KR</span>
+        <span class="trait fit">대기업 · SI · 공공</span>
+      </div>
+      <div class="actions">
+        <a class="open" href="1-editorial.html">시안 열기</a>
+        <a class="open-tab" href="1-editorial.html" target="_blank" title="새 탭에서 열기">↗</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="num">№ 2</div>
+    <div class="preview terminal">
+      <div class="demo">
+        <span class="pmt">park</span><span class="dim">@</span><span class="blk">jonghwa</span><span class="dim">:</span><span class="am">~/career</span><span class="pk">$</span> <span style="color:#C9D7E5">whoami</span><br>
+        <span class="dim"># 9년차 Unity Client Dev</span><br>
+        <span style="color:#C9D7E5">role:</span> <span class="acc">"AR/VR/XR"</span><br>
+        <span style="color:#C9D7E5">stack:</span> [<span class="acc">"C#"</span>, <span class="acc">"Unity"</span>]<br>
+        <span style="color:#C9D7E5">agents:</span> <span class="am">Claude · Codex · Gemini</span><br>
+        <span class="dim">$</span> <span class="acc">cat resume.md</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="tone">Terminal · 다크</div>
+      <h2>Dev <em>Terminal</em></h2>
+      <p class="desc">터미널 미학. 다크 배경에 포스포 시안과 앰버 액센트, 모노스페이스로 통일. ASCII 아트 헤더와 프롬프트 라인. 개발자다움을 전면에.</p>
+      <div class="traits">
+        <span class="trait">IBM Plex Mono · Sans KR</span>
+        <span class="trait">Scanline · Status Bar</span>
+        <span class="trait fit">AI 스타트업 · 개발자 중심</span>
+      </div>
+      <div class="actions">
+        <a class="open" href="2-terminal.html">시안 열기</a>
+        <a class="open-tab" href="2-terminal.html" target="_blank" title="새 탭에서 열기">↗</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="num">№ 3</div>
+    <div class="preview studio">
+      <div class="demo">
+        <span class="grad">CLIENT<br>PROGRAMMER</span>
+        <span class="sub">★ 선택됨 · C# · UNITY</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="tone">Studio · 게임 포트폴리오</div>
+      <h2>Game Studio <em>Card</em></h2>
+      <p class="desc">게임 스튜디오 포트폴리오 무드. 핫 마젠타 → 시안 그라데이션, 카드형 프로젝트, 핵심역량 → 프로젝트 앵커 내비게이션, 글로우와 호버 효과로 에너지를 표현.</p>
+      <div class="traits">
+        <span class="trait">Anton · Black Han Sans</span>
+        <span class="trait">Manrope · Gradient</span>
+        <span class="trait fit">게임사 · 인디 스튜디오</span>
+      </div>
+      <div class="actions">
+        <a class="open" href="3-game-studio.html">시안 열기</a>
+        <a class="open-tab" href="3-game-studio.html" target="_blank" title="새 탭에서 열기">↗</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="num">№ 4</div>
+    <div class="preview modern">
+      <div class="demo">박종화<em>/ Park Jonghwa</em><span class="sub">Unity · AI Agent 기반 개발</span></div>
+    </div>
+    <div class="card-body">
+      <div class="tone">Modern · AI-Era</div>
+      <h2>Modern <em>AI-Era</em></h2>
+      <p class="desc">미니멀하면서 따뜻한 모던. 크림 베이스에 부드러운 그라데이션 메쉬, 제이드 + 코퍼 액센트, 이탤릭 세리프로 인격을 더함. Pretendard로 정돈된 한국어 가독성.</p>
+      <div class="traits">
+        <span class="trait">Bricolage Grotesque · Instrument Serif</span>
+        <span class="trait">Pretendard · Gowun Batang</span>
+        <span class="trait fit">XR · AI · 메타버스 · 테크</span>
+      </div>
+      <div class="actions">
+        <a class="open" href="4-modern-ai.html">시안 열기</a>
+        <a class="open-tab" href="4-modern-ai.html" target="_blank" title="새 탭에서 열기">↗</a>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <span>각 시안은 단독 HTML · 외부 의존: <span class="acc">Google Fonts + Pretendard CDN</span></span>
+    <span>© 2026 박종화 · 시안 비교용 빌드</span>
+  </div>
+</footer>
+
+</body>
+</html>
