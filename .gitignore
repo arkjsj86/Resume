@@ -3,8 +3,9 @@ _resume.txt
 _resume_pdfplumber.txt
 _projects.txt
 
-# 사이드 프로젝트 정리 — private repo·미출시 게임·공모전 정보 포함, 공개 금지
+# 사이드 프로젝트 정리·작업 핸드오프 노트 — 공개 금지 (로컬 보관)
 _side_projects.txt
+_NEXT_*.md
 
 # 개인정보 포함 원본 문서·스크립트 — 공개 금지 (로컬 보관)
 *.pdf
